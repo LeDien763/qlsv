@@ -1,5 +1,7 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
- pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +14,39 @@
 	crossorigin="anonymous" />
 </head>
 
+
+<style>
+.login-container {
+	border: 1px solid #ccc; /* Add a border */
+	padding: 20px; /* Add some padding */
+	border-radius: 10px;
+	/* Optional: Add border-radius for rounded corners */
+	margin: auto; /* Center the container horizontally */
+	max-width: 500px; /* Optional: Set a maximum width for the container */
+	margin-top: 50px; /* Optional: Adjust the top margin */
+}
+
+/* Optional: Add some styles to center the form elements */
+.login-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Optional: Add some styles to center the submit button */
+.login-container button {
+	margin-top: 10px;
+}
+</style>
+
 <body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: #0187c6">
 			<div class="d-flex" style="margin-left: 25%;">
 				<div class="flex-shrink-0">
-					<img class="navbar-brand" width="80px" src="../resource/logo.png"
+					<img class="navbar-brand" width="80px"
+						src="https://seeklogo.com/images/H/hcmute-logo-7553D4CCA1-seeklogo.com.png"
 						alt="logo_spkt">
 				</div>
 				<h3 class="flex-grow-1 ms-3 d-flex align-items-center">Trường
@@ -26,33 +54,19 @@
 			</div>
 		</nav>
 	</header>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#">Trang chủ</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Hướng
-							dẫn</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="container col-md-5 col-md-offset-3" style="overflow: auto">
-		<form action="<%=request.getContextPath()%>/Login" method="post">
-			<div class="form-group">
-				<label for="uname">Tên đăng nhập:</label> <input type="text"
-					class="form-control" id="username" placeholder="User Name"
-					name="username" required />
-			</div>
 
-			<div class="form-group">
-				<label for="uname">Mật khẩu:</label> <input type="password"
-					class="form-control" id="password" placeholder="Password"
-					name="password" required />
-			</div>
+
+	<div class="container login-container col-md-5 col-md-offset-3"
+		style="overflow: auto">
+		<h3
+			class="mb-3 login-container col-md-5 col-md-offset-3 mt-0 text-center ">Đăng
+			Nhập</h3>
+		<form action="<%=request.getContextPath()%>/Login" method="post">
+			<c:if test="${not empty errorMessageAc}">
+				<div
+					class="alert ${errorMessageSuccessAc ? 'alert-success' : 'alert-danger'}"
+					role="alert">${errorMessageAc}</div>
+			</c:if>
 			<div class="container" style="padding: 0;">
 				<div class="row">
 					<div class="col">
@@ -69,7 +83,26 @@
 					</div>
 				</div>
 
+
+				<div class="form-group">
+					<label for="uname">Tên đăng nhập:</label> <input type="text"
+						class="form-control" id="username" placeholder="User Name"
+						name="username" required />
+				</div>
+
+				<div class="form-group">
+					<label for="uname">Mật khẩu:</label> <input type="password"
+						class="form-control" id="password" placeholder="Password"
+						name="password" required />
+				</div>
+				<div class="d-flex text-md-left custom-margin">
+					<a class="nav-link active" href="QuenMatKhau.jsp">Quên mật khẩu</a>
+				</div>
+
 			</div>
+
+
+
 			<div class="d-flex flex-row-reverse">
 				<button type="submit" class="btn btn-primary">Đăng nhập</button>
 			</div>
